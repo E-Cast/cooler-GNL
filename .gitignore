@@ -1,6 +1,7 @@
 main.c
 *.o
 .vscode
+.DS_Store
 .txt
 *.out.dSYM
 *.out
