@@ -5,3 +5,4 @@ main.c
 *.out.dSYM
 *.out
 *.txt
+*.rpt

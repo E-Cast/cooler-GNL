@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:38:00 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/22 11:16:47 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/22 12:34:53 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*get_next_line(int fd)
 {
 	static char	stash[BUFFER_SIZE + 1];
 	char		*line;
+	int			b_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -24,8 +25,15 @@ char	*get_next_line(int fd)
 	{
 		if (!stash[0])
 		{
-			if (read(fd, stash, BUFFER_SIZE) == 0)
+			b_read = read(fd, stash, BUFFER_SIZE);
+			if (b_read == 0)
 				return (line);
+			if (b_read == -1)
+			{
+				if (line)
+					free(line);
+				return (NULL);
+			}
 		}
 		else
 		{
