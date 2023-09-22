@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:37:42 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/22 12:53:52 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:13:13 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
+void	safe_free(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+}
+
 char	*str_utils(char *str1, char *str2, char *dest)
 {
-	size_t	i;
+	ssize_t	i;
 	size_t	j;
 
 	if (ft_strlen(str1) + ft_strlen(str2) == 0)
@@ -35,20 +41,20 @@ char	*str_utils(char *str1, char *str2, char *dest)
 	{
 		dest = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
 		if (!dest)
+		{
+			safe_free(str1);
 			return (NULL);
+		}
 	}
 	i = 0;
 	j = 0;
 	while (str1 && str1[i])
-	{
-		dest[i] = str1[i];
-		i++;
-	}
+		dest[i++] = str1[j++];
+	j = 0;
 	while (str2 && str2[j])
 		dest[i++] = str2[j++];
 	dest[i] = '\0';
-	if (str1)
-		free(str1);
+	safe_free(str1);
 	return (dest);
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_boonus.c                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:38:00 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/22 12:54:13 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:12:47 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	read_fd(int fd, char *stash, char **line)
 			return (0);
 		if (b_read == -1)
 		{
-			if (*line)
-				free(*line);
+			safe_free(*line);
 			return (-1);
 		}
 	}

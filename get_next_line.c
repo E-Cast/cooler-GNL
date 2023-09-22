@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:38:00 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/22 12:49:30 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:24:46 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	read_fd(int fd, char *stash, char **line)
 			return (0);
 		if (b_read == -1)
 		{
-			if (*line)
-				free(*line);
+			safe_free(*line);
 			return (-1);
 		}
 	}
