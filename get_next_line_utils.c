@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:37:42 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/22 08:39:47 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/22 11:05:44 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,32 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-void	p_free(void *ptr)
+char	*str_utils(char *str1, char *str2, char *dest)
 {
-	if (ptr)
-		free(ptr);
+	size_t	i;
+	size_t	j;
+
+	if (ft_strlen(str1) + ft_strlen(str2) == 0)
+		return (NULL);
+	if (!dest)
+	{
+		dest = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
+		if (!dest)
+			return (NULL);
+	}
+	i = 0;
+	j = 0;
+	while (str1 && str1[i])
+	{
+		dest[i] = str1[i];
+		i++;
+	}
+	while (str2 && str2[j])
+		dest[i++] = str2[j++];
+	dest[i] = '\0';
+	if (str1)
+		free(str1);
+	return (dest);
 }
 
 char	*ft_strchr(const char *str, int chr)
@@ -48,22 +70,15 @@ char	*ft_strchr(const char *str, int chr)
 	return (NULL);
 }
 
-char	*ft_strdup(const char *src)
+void	ft_bzero(void *str, size_t len)
 {
-	char	*dest;
+	char	*ptr;
 	size_t	i;
 
-	if (!src)
-		return (NULL);
-	dest = (char *)malloc(ft_strlen(src) + 1);
-	if (!dest)
-		return (p_free((void *)src), NULL);
+	if (!str)
+		return ;
+	ptr = (char *)str;
 	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	while (i < len)
+		ptr[i++] = 0;
 }

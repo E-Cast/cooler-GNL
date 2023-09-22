@@ -2,3 +2,6 @@ main.c
 *.o
 .vscode
 .txt
+*.out.dSYM
+*.out
+*.txt
