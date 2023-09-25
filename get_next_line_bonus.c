@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:38:00 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/25 10:10:14 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:42:56 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@ int	read_fd(int fd, char *stash, char **line)
 			return (-1);
 		}
 	}
-	else
-	{
-		*line = str_utils(*line, stash, NULL);
-		if (*line == NULL)
-			return (-1);
-		ft_bzero(stash, BUFFER_SIZE);
-	}
+	*line = str_utils(*line, stash, NULL);
+	if (*line == NULL)
+		return (-1);
+	ft_bzero(stash, BUFFER_SIZE);
 	return (b_read);
 }
 
