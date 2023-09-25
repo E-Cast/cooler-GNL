@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:37:42 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/25 08:01:11 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:23:30 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ size_t	ft_strlen(const char *str)
 void	safe_free(void *ptr)
 {
 	if (ptr)
+	{
 		free(ptr);
+		ptr = NULL;
+	}
 }
 
 char	*str_utils(char *str1, char *str2, char *dest)

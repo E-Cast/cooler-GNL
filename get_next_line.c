@@ -6,7 +6,7 @@
 /*   By: ecastong <ecastong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 07:38:00 by ecastong          #+#    #+#             */
-/*   Updated: 2023/09/25 08:01:18 by ecastong         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:12:13 by ecastong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	read_fd(int fd, char *stash, char **line)
 	int	b_read;
 
 	b_read = 1;
-	if (!stash[0])
+	if (stash[0] == '\0')
 	{
 		b_read = read(fd, stash, BUFFER_SIZE);
 		if (b_read == 0)
@@ -44,7 +44,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			errcode;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
 	while (!ft_strchr(line, '\n'))
